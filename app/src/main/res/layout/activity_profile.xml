@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context=".main.profile.ProfileActivity">
 
-    <com.rozdoum.socialcomponents.views.SwipeRefreshPreLollyPop
+    <com.amar_golp.socialcomponents.views.SwipeRefreshPreLollyPop
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,7 +34,7 @@
 
         </FrameLayout>
 
-    </com.rozdoum.socialcomponents.views.SwipeRefreshPreLollyPop>
+    </com.amar_golp.socialcomponents.views.SwipeRefreshPreLollyPop>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

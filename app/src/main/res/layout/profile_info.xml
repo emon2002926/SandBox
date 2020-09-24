@@ -77,7 +77,7 @@
         tools:text="25 \n posts"
         tools:visibility="visible" />
 
-    <com.rozdoum.socialcomponents.views.FollowButton
+    <com.amar_golp.socialcomponents.views.FollowButton
         android:id="@+id/followButton"
         style="@style/FollowButton"
         android:layout_marginBottom="16dp"
@@ -121,7 +121,7 @@
             android:layout_centerInParent="true"
             android:visibility="visible" />
 
-        <com.rozdoum.socialcomponents.views.CircularImageView
+        <com.amar_golp.socialcomponents.views.CircularImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

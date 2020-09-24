@@ -26,7 +26,7 @@
     android:padding="24dp"
     android:gravity="center_horizontal">
 
-    <com.rozdoum.socialcomponents.views.CircularImageView
+    <com.amar_golp.socialcomponents.views.CircularImageView
         android:id="@+id/imageView"
         android:layout_width="@dimen/profile_screen_avatar_size"
         android:layout_height="@dimen/profile_screen_avatar_size"

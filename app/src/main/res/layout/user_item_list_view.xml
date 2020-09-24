@@ -9,7 +9,7 @@
     android:orientation="horizontal"
     android:padding="@dimen/large_intrinsic_padding">
 
-    <com.rozdoum.socialcomponents.views.CircularImageView
+    <com.amar_golp.socialcomponents.views.CircularImageView
         android:id="@+id/photoImageView"
         android:layout_width="@dimen/post_author_image_side"
         android:layout_height="@dimen/post_author_image_side"
@@ -30,7 +30,7 @@
         android:textAppearance="@style/TextAppearance.Title"
         tools:text="John Smith " />
 
-    <com.rozdoum.socialcomponents.views.FollowButton
+    <com.amar_golp.socialcomponents.views.FollowButton
         android:id="@+id/followButton"
         style="@style/FollowButton"
         android:visibility="invisible"
