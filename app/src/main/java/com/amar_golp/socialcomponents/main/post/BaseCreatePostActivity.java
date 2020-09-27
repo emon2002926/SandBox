@@ -71,13 +71,21 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
 
     @Override
     protected ImageView getImageView() {
+
         return imageView;
     }
 
     @Override
     protected void onImagePikedAction() {
+//        loadImageToImageView(imageUri);
+//        startCropImageActivity(imageUri);
         loadImageToImageView(imageUri);
+
+
     }
+
+//    protected abstract void startCropImageActivity(Uri imageUri);
+
 
     @Override
     public void setDescriptionError(String error) {
@@ -111,6 +119,8 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
         setResult(RESULT_OK);
         this.finish();
     }
+
+
 
     @Override
     public Uri getImageUri() {

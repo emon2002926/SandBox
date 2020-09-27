@@ -33,8 +33,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
 import com.amar_golp.socialcomponents.Constants;
@@ -47,7 +49,9 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URI;
 
 public abstract class PickImageActivity<V extends PickImageView, P extends PickImagePresenter<V>> extends BaseActivity<V, P> implements PickImageView {
@@ -72,21 +76,7 @@ public abstract class PickImageActivity<V extends PickImageView, P extends PickI
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey(SAVED_STATE_IMAGE_URI)) {
                 imageUri = savedInstanceState.getParcelable(SAVED_STATE_IMAGE_URI);
-//                int width =480;
-//                int height = 800;
-//
-//                Bitmap bitmap = null;
-//                try {
-//                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//
-//                Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, width, height, true);
-
                 loadImageToImageView(imageUri);
-
             }
         }
 
@@ -110,32 +100,15 @@ public abstract class PickImageActivity<V extends PickImageView, P extends PickI
 
         this.imageUri = imageUri;
         ImageUtil.loadLocalImage(GlideApp.with(this), imageUri, getImageView(), new RequestListener<Drawable>() {
-
-
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 return false;
             }
 
             @Override
-            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource)
-            {
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 getProgressView().setVisibility(View.GONE);
                 LogUtil.logDebug(TAG, "Glide Success Loading image from uri : " + imageUri.getPath());
-
-//                int width =480;
-//                int height = 800;
-//
-//                Bitmap bitmap = null;
-//                try {
-//                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//
-//                Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, width, height, true);
-
                 return false;
             }
         });
@@ -145,7 +118,10 @@ public abstract class PickImageActivity<V extends PickImageView, P extends PickI
     @SuppressLint("NewApi")
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // handle result of pick image chooser
+        // Bitmap beforeBitmap3 = BitmapFactory.decodeFile(CropImage)
         if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            ///  Bitmap beforeBitmap = BitmapFactory.decodeFile(imageUri)
+
             Uri imageUri = CropImage.getPickImageResultUri(this, data);
 
             if (presenter.isImageFileValid(imageUri)) {
@@ -189,15 +165,6 @@ public abstract class PickImageActivity<V extends PickImageView, P extends PickI
         presenter.handleCropImageResult(requestCode, resultCode, data);
     }
 
-//
-//    Bitmap bitmapImage = BitmapFactory.decodeFile(imageUri);
-//    int nh = (int) ( bitmapImage.getHeight() * (512.0 / bitmapImage.getWidth()) );
-//    Bitmap scaled = Bitmap.createScaledBitmap(bitmapImage, 512, nh, true);
-
-//    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-
-
     protected void startCropImageActivity() {
         if (imageUri == null) {
             return;
@@ -206,8 +173,11 @@ public abstract class PickImageActivity<V extends PickImageView, P extends PickI
         CropImage.activity(imageUri)
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setFixAspectRatio(true)
+                .setOutputCompressFormat(Bitmap.CompressFormat.JPEG)
                 .setMinCropResultSize(Constants.Profile.MIN_AVATAR_SIZE, Constants.Profile.MIN_AVATAR_SIZE)
                 .setRequestedSize(Constants.Profile.MAX_AVATAR_SIZE, Constants.Profile.MAX_AVATAR_SIZE)
+                .setOutputCompressQuality(100)
+                .setRequestedSize(480,800)
                 .start(this);
     }
 
@@ -216,4 +186,3 @@ public abstract class PickImageActivity<V extends PickImageView, P extends PickI
         getProgressView().setVisibility(View.GONE);
     }
 }
-

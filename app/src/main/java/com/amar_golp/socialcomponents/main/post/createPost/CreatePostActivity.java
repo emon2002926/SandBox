@@ -16,13 +16,19 @@
 
 package com.amar_golp.socialcomponents.main.post.createPost;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.amar_golp.socialcomponents.Constants;
 import com.amar_golp.socialcomponents.R;
 import com.amar_golp.socialcomponents.main.post.BaseCreatePostActivity;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageActivity;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 public class CreatePostActivity extends BaseCreatePostActivity<CreatePostView, CreatePostPresenter> implements CreatePostView {
     public static final int CREATE_NEW_POST_REQUEST = 11;
@@ -42,6 +48,13 @@ public class CreatePostActivity extends BaseCreatePostActivity<CreatePostView, C
         inflater.inflate(R.menu.create_post_menu, menu);
         return true;
     }
+
+//    @Override
+//    public void onImagePikedAction() {
+//        startCropImageActivity();
+//    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
