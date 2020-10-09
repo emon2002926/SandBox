@@ -121,12 +121,13 @@ public class EditProfileActivity<V extends EditProfileView, P extends EditProfil
             }
         });
     }
+    //This posion in not neded//
 
     @Override
     public String getNameText() {
         return nameEditText.getText().toString();
     }
-
+   //This posion in not neded//
     @Override
     public void setNameError(@Nullable String string) {
         nameEditText.setError(string);

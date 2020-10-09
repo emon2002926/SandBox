@@ -17,14 +17,24 @@
 package com.amar_golp.socialcomponents.main.post;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.amar_golp.socialcomponents.R;
 import com.amar_golp.socialcomponents.main.pickImageBase.PickImageActivity;
+import com.amar_golp.socialcomponents.utils.GlideApp;
+import com.amar_golp.socialcomponents.utils.ImageUtil;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 /**
  * Created by Alexey on 03.05.18.
@@ -77,14 +87,17 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
 
     @Override
     protected void onImagePikedAction() {
-//        loadImageToImageView(imageUri);
-//        startCropImageActivity(imageUri);
-        loadImageToImageView(imageUri);
 
+        startCropImageActivity();
 
     }
-
-//    protected abstract void startCropImageActivity(Uri imageUri);
+    @Override
+    @SuppressLint("NewApi")
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // handle result of pick image chooser
+        super.onActivityResult(requestCode, resultCode, data);
+        handleCropImageResult(requestCode, resultCode, data);
+    }
 
 
     @Override

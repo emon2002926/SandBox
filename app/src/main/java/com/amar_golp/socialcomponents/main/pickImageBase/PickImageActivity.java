@@ -172,12 +172,12 @@ public abstract class PickImageActivity<V extends PickImageView, P extends PickI
 
         CropImage.activity(imageUri)
                 .setGuidelines(CropImageView.Guidelines.ON)
-                .setFixAspectRatio(true)
-                .setOutputCompressFormat(Bitmap.CompressFormat.JPEG)
+//                .setFixAspectRatio(true)
                 .setMinCropResultSize(Constants.Profile.MIN_AVATAR_SIZE, Constants.Profile.MIN_AVATAR_SIZE)
                 .setRequestedSize(Constants.Profile.MAX_AVATAR_SIZE, Constants.Profile.MAX_AVATAR_SIZE)
-                .setOutputCompressQuality(100)
+                .setOutputCompressQuality(50)
                 .setRequestedSize(480,800)
+                .setOutputCompressFormat(Bitmap.CompressFormat.JPEG)
                 .start(this);
     }
 

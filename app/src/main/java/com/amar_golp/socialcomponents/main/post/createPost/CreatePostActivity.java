@@ -49,12 +49,6 @@ public class CreatePostActivity extends BaseCreatePostActivity<CreatePostView, C
         return true;
     }
 
-//    @Override
-//    public void onImagePikedAction() {
-//        startCropImageActivity();
-//    }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

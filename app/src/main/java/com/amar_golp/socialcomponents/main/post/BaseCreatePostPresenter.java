@@ -87,6 +87,8 @@ public abstract class BaseCreatePostPresenter<V extends BaseCreatePostView> exte
         });
     }
 
+
+
     public void doSavePost(Uri imageUri) {
         if (!creatingPost) {
             if (hasInternetConnection()) {
